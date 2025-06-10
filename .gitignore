@@ -1,0 +1,15 @@
+# MAC
+.DS_Store
+
+# GCP
+*terraform-sa.json
+*.tfvars
+*.tfstate
+*.tfstate.backup
+.terraform/
+.terraform.lock.hcl
+
+# Misc
+*.bak
+*.tmp
+*.temp
