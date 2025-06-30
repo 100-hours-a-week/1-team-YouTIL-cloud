@@ -23,7 +23,7 @@ resource "google_compute_network_endpoint" "this" {
   count                  = length(var.instances)
   network_endpoint_group = google_compute_network_endpoint_group.this.name
   zone                   = var.zone
-  instance               = var.instances[count.index].self_link
+  instance               = var.instances[count.index].name
   ip_address             = var.instances[count.index].private_ip
   port                   = var.port
 }

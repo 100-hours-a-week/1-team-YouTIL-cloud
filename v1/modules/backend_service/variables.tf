@@ -31,7 +31,7 @@ variable "subnetwork" {
 variable "instances" {
   description = "백엔드 VM 인스턴스 정보 리스트"
   type = list(object({
-    self_link = string
+    name = string
     private_ip = string
   }))
 }
@@ -50,7 +50,7 @@ variable "health_check_path" {
 variable "timeout_sec" {
   description = "백엔드 서비스 타임아웃 (초)"
   type        = number
-  default     = 60
+  default     = 300
 }
 
 variable "balancing_mode" {

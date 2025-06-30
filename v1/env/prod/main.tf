@@ -41,7 +41,7 @@ module "bastion" {
   project        = var.project_id
   network        = module.vpc.vpc_network_name
   subnetwork     = module.vpc.bastion_subnet_self_link
-  machine_type   = "e2-micro"
+  machine_type   = "e2-small"
   disk_size_gb   = 30
   disk_type      = "pd-ssd"
   tags           = ["bastion"]
@@ -227,7 +227,7 @@ module "frontend_backend" {
 
   instances = [
     {
-      self_link = module.web.instance_self_link
+      name = module.web.instance_name
       private_ip = module.web.internal_ip
     }
   ]
@@ -248,7 +248,7 @@ module "backend_service" {
 
   instances = [
     {
-      self_link = module.app.instance_self_link
+      name = module.app.instance_name
       private_ip = module.app.internal_ip
     }
   ]
