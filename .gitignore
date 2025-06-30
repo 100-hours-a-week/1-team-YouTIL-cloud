@@ -13,3 +13,5 @@
 *.bak
 *.tmp
 *.temp
+
+.venv/
