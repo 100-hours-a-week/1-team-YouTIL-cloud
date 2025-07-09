@@ -247,6 +247,19 @@ resource "google_compute_firewall" "allow_k8s_ssh" {
   target_tags   = ["master", "worker"]
 }
 
+resource "google_compute_firewall" "allow_ingress_http_https" {
+  name    = "${var.vpc_name}-allow-http-https"
+  network = module.vpc.vpc_network_name
+
+  allow {
+    protocol = "tcp"
+    ports    = ["80", "443"]
+  }
+
+  source_ranges = ["0.0.0.0/0"]
+  target_tags   = ["master", "worker"]
+}
+
 # Frontend Backend Service
 module "frontend_backend" {
   source = "../../modules/backend_service"
