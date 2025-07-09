@@ -1,4 +1,4 @@
-namespace: prod
+namespace: youtil-prod
 replicaCount: 1
 
 image:
