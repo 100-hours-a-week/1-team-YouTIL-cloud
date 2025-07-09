@@ -1,0 +1,20 @@
+namespace: youtil-prod
+replicaCount: 1
+
+image:
+  repository: asia-northeast3-docker.pkg.dev/youtil-459908/youtil-docker-registry/youtil-be-prod
+  tag: latest
+  pullPolicy: Always
+  pullSecret: regcred
+  containerPort: 8080
+
+service:
+  type: ClusterIP     
+  port: 80
+  targetPort: 8080
+
+ingress:
+  className: nginx
+  path: /
+  pathType: Prefix
+
