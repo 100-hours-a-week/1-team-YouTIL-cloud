@@ -264,7 +264,7 @@ module "frontend_backend" {
     }
   ]
 
-  port = 31319
+  port = 32030
   health_check_path = "/login"
 }
 
@@ -285,7 +285,7 @@ module "backend_service" {
     }
   ]
 
-  port = 8080
+  port = 32080
   health_check_path = "/health"
 }
 
