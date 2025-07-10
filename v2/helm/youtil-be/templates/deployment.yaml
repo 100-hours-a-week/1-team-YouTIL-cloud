@@ -20,6 +20,8 @@ spec:
         - name: {{ .Values.nameOverride | default .Release.Name }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
+          args:
+            - "--spring.profiles.active={{ .Values.springProfile }}"
           ports:
             - containerPort: {{ .Values.image.containerPort }}
       imagePullSecrets:

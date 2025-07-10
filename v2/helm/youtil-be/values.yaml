@@ -1,7 +1,7 @@
 namespace: youtil-prod
 replicaCount: 1
-
-nameOverride: youtil-be-prod   # Helm 리소스 이름을 기존과 맞추기
+springProfile: prod
+nameOverride: youtil-be-prod   
 
 image:
   repository: asia-northeast3-docker.pkg.dev/youtil-459908/youtil-docker-registry/youtil-be-prod
@@ -16,3 +16,6 @@ service:
   port: 80
   targetPort: 8080
   nodePort: 32080  
+
+args:
+  - "--spring.profiles.active=prod"
