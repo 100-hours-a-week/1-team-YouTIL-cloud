@@ -1,6 +1,8 @@
 namespace: youtil-prod
 replicaCount: 1
 
+nameOverride: youtil-be-prod   # Helm 리소스 이름을 기존과 맞추기
+
 image:
   repository: asia-northeast3-docker.pkg.dev/youtil-459908/youtil-docker-registry/youtil-be-prod
   tag: latest
@@ -9,8 +11,8 @@ image:
   containerPort: 8080
 
 service:
-  type: ClusterIP     
+  name: youtil-be-service-prod
+  type: NodePort
   port: 80
   targetPort: 8080
-
-
+  nodePort: 32080  
