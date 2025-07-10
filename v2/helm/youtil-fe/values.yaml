@@ -1,0 +1,23 @@
+namespace: youtil-prod
+replicaCount: 1
+springProfile: prod
+nameOverride: youtil-fe-prod
+
+image:
+  repository: asia-northeast3-docker.pkg.dev/youtil-459908/youtil-docker-registry/youtil-fe-prod
+  tag: latest
+  pullPolicy: Always
+  pullSecret: regcred
+  containerPort: 3000
+
+service:
+  name: youtil-fe-service-prod
+  type: NodePort
+  port: 80
+  targetPort: 3000      
+  nodePort: 32030      
+
+args:
+  - "npm"
+  - "run"
+  - "start"
