@@ -3,6 +3,9 @@ kind: Deployment
 metadata:
   name: {{ .Values.nameOverride | default .Release.Name }}
   namespace: {{ .Values.namespace }}
+  labels:
+    app.kubernetes.io/name: {{ .Values.nameOverride | default .Release.Name }}
+    app.kubernetes.io/instance: {{ .Values.nameOverride | default .Release.Name }}
 spec:
   revisionHistoryLimit: 2
   replicas: {{ .Values.replicaCount }}
@@ -13,6 +16,8 @@ spec:
     metadata:
       labels:
         app: {{ .Values.nameOverride | default .Release.Name }}
+        app.kubernetes.io/name: {{ .Values.nameOverride | default .Release.Name }}
+        app.kubernetes.io/instance: {{ .Values.nameOverride | default .Release.Name }}
     spec:
       nodeSelector:
         node-role.kubernetes.io/worker: "true"
