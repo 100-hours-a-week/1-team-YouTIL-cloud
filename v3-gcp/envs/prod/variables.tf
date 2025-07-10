@@ -57,6 +57,12 @@ variable "internal_cidr" {
   default     = "10.0.0.0/16"
 }
 
+variable "pods_cidr" {
+  description = "CIDR range for pods"
+  type        = string
+  default     = "192.168.0.0/17"
+}
+
 variable "ssh_source_ranges" {
   description = "Source IP ranges allowed to SSH to bastion"
   type        = list(string)

@@ -23,7 +23,7 @@ module "vpc" {
   node_subnet_cidr   = var.node_subnet_cidr
   db_subnet_cidr    = var.db_subnet_cidr
   internal_cidr     = var.internal_cidr
-  ssh_source_ranges = var.ssh_source_ranges
+  pods_cidr         = var.pods_cidr
 }
 
 # External IP Reservation for Bastion
