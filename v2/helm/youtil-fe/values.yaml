@@ -8,14 +8,14 @@ image:
   tag: latest
   pullPolicy: Always
   pullSecret: regcred
-  containerPort: 3000   # ✅ 리액트 앱 포트
+  containerPort: 3000
 
 service:
   name: youtil-fe-service-prod
   type: NodePort
   port: 80
-  targetPort: 3000      # ✅ 컨테이너 내부 포트
-  nodePort: 32030       # ✅ 외부 노출 포트
+  targetPort: 3000      
+  nodePort: 32030      
 
 args:
-  - "npm run start"      # 예시: 리액트 앱 실행 커맨드 (필요 시 수정 가능)
+  - "npm run start"      
