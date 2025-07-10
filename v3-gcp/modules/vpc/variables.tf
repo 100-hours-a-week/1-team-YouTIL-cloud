@@ -16,7 +16,6 @@ variable "bastion_subnet_cidr" {
   default     = "10.0.0.0/24"
 }
 
-
 variable "node_subnet_cidr" {
   description = "CIDR range for node subnet"
   type        = string
@@ -35,8 +34,8 @@ variable "internal_cidr" {
   default     = "10.0.0.0/16"
 }
 
-variable "ssh_source_ranges" {
-  description = "Source IP ranges allowed to SSH to bastion"
-  type        = list(string)
-  default     = ["0.0.0.0/0"]
+variable "pods_cidr" {
+  description = "CIDR range for pods"
+  type        = string
+  default     = "192.168.0.0/17"
 }

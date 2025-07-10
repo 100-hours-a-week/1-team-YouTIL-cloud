@@ -56,3 +56,19 @@ resource "google_compute_firewall" "allow_internal" {
 
   source_ranges = [var.internal_cidr]
 }
+
+resource "google_compute_firewall" "allow_internal_from_pods" {
+  name    = "${var.vpc_name}-allow-internal-from-pods"
+  network = google_compute_network.vpc_network.name
+
+  allow {
+    protocol = "tcp"
+    ports    = ["3306", "6379"]
+  }
+  allow {
+    protocol = "icmp"
+  }
+
+  source_ranges = [var.pods_cidr]
+  target_tags   = ["db"]
+}
