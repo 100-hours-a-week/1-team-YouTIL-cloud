@@ -1,0 +1,21 @@
+namespace: youtil-prod
+replicaCount: 1
+springProfile: prod
+nameOverride: youtil-be-prod   
+
+image:
+  repository: asia-northeast3-docker.pkg.dev/youtil-459908/youtil-docker-registry/youtil-be-prod
+  tag: latest
+  pullPolicy: Always
+  pullSecret: regcred
+  containerPort: 8080
+
+service:
+  name: youtil-be-service-prod
+  type: NodePort
+  port: 80
+  targetPort: 8080
+  nodePort: 32080  
+
+args:
+  - "--spring.profiles.active=prod"
