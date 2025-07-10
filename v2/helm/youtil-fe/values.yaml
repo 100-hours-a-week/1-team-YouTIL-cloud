@@ -18,4 +18,6 @@ service:
   nodePort: 32030      
 
 args:
-  - "npm run start"      
+  - "npm"
+  - "run"
+  - "start"
