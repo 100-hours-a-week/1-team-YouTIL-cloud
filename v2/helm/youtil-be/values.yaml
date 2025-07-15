@@ -4,7 +4,7 @@ springProfile: prod
 nameOverride: youtil-be-prod   
 
 image:
-  repository: asia-northeast3-docker.pkg.dev/youtil-459908/youtil-docker-registry/youtil-be-prod
+  repository: 854383975470.dkr.ecr.ap-northeast-2.amazonaws.com/youtil/be-prod
   tag: latest
   pullPolicy: Always
   pullSecret: regcred
