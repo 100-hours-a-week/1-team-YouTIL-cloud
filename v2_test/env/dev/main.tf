@@ -295,12 +295,12 @@ module "certificate_manager" {
   name   = "web"
   project = var.project_id
   domain_names = [
-    "jarbis.shop",
-    "api.jarbis.shop",
+    "youtil.co.kr",
+    "api.youtil.co.kr",
   ]
   ssl_certificate_ids = {
-    "jarbis.shop" = "projects/enhanced-pen-462505-m4/locations/global/certificates/jarvis-crt"
-    "api.jarbis.shop" = "projects/enhanced-pen-462505-m4/locations/global/certificates/jarvis-crt"
+    "youtil.co.kr" = "projects/enhanced-pen-462505-m4/locations/global/certificates/youtil-crt"
+    "api.youtil.co.kr" = "projects/enhanced-pen-462505-m4/locations/global/certificates/youtil-crt"
   }
 }
 
@@ -313,13 +313,13 @@ module "external_lb" {
 
   host_rules = [
     {
-      host = "jarbis.shop"
+      host = "youtil.co.kr"
       path_matcher = "main"
       default_service_id = module.frontend_backend.backend_service_id
       path_rules = []
     },
     {
-      host = "api.jarbis.shop"
+      host = "api.youtil.co.kr"
       path_matcher = "api"
       default_service_id = module.backend_service.backend_service_id
       path_rules = []
