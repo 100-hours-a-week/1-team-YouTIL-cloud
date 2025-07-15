@@ -43,4 +43,4 @@ variable "project_name" {
 variable "stage" {
   description = "Stage (dev, prod, etc.)"
   type        = string
-} 
+}
