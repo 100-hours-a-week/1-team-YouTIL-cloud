@@ -247,82 +247,82 @@ resource "google_compute_firewall" "allow_k8s_ssh" {
   target_tags   = ["master", "worker"]
 }
 
-# Frontend Backend Service
-module "frontend_backend" {
-  source = "../../modules/backend_service"
-  name   = "frontend"
-  project = var.project_id
-  region  = var.region
-  zone    = var.zone
-  network = module.vpc.vpc_network_name
-  subnetwork = module.vpc.worker_subnet_self_link
+# # Frontend Backend Service
+# module "frontend_backend" {
+#   source = "../../modules/backend_service"
+#   name   = "frontend"
+#   project = var.project_id
+#   region  = var.region
+#   zone    = var.zone
+#   network = module.vpc.vpc_network_name
+#   subnetwork = module.vpc.worker_subnet_self_link
 
-  instances = [
-    {
-      name = module.worker.instance_name
-      private_ip = module.worker.internal_ip
-    }
-  ]
+#   instances = [
+#     {
+#       name = module.worker.instance_name
+#       private_ip = module.worker.internal_ip
+#     }
+#   ]
 
-  port = 32030
-  health_check_path = "/login"
-}
+#   port = 32030
+#   health_check_path = "/login"
+# }
 
-# Backend Service
-module "backend_service" {
-  source = "../../modules/backend_service"
-  name   = "backend"
-  project = var.project_id
-  region  = var.region
-  zone    = var.zone
-  network = module.vpc.vpc_network_name
-  subnetwork = module.vpc.worker_subnet_self_link
+# # Backend Service
+# module "backend_service" {
+#   source = "../../modules/backend_service"
+#   name   = "backend"
+#   project = var.project_id
+#   region  = var.region
+#   zone    = var.zone
+#   network = module.vpc.vpc_network_name
+#   subnetwork = module.vpc.worker_subnet_self_link
 
-  instances = [
-    {
-      name = module.worker.instance_name
-      private_ip = module.worker.internal_ip
-    }
-  ]
+#   instances = [
+#     {
+#       name = module.worker.instance_name
+#       private_ip = module.worker.internal_ip
+#     }
+#   ]
 
-  port = 32080
-  health_check_path = "/health"
-}
+#   port = 32080
+#   health_check_path = "/health"
+# }
 
-# Certificate Manager
-module "certificate_manager" {
-  source = "../../modules/certificate_manager"
-  name   = "web"
-  project = var.project_id
-  domain_names = [
-    "youtil.co.kr",
-    "api.youtil.co.kr",
-  ]
-  ssl_certificate_ids = {
-    "youtil.co.kr" = "projects/enhanced-pen-462505-m4/locations/global/certificates/youtil-crt"
-    "api.youtil.co.kr" = "projects/enhanced-pen-462505-m4/locations/global/certificates/youtil-crt"
-  }
-}
+# # Certificate Manager
+# module "certificate_manager" {
+#   source = "../../modules/certificate_manager"
+#   name   = "web"
+#   project = var.project_id
+#   domain_names = [
+#     "youtil.co.kr",
+#     "api.youtil.co.kr",
+#   ]
+#   ssl_certificate_ids = {
+#     "youtil.co.kr" = "projects/enhanced-pen-462505-m4/locations/global/certificates/youtil-crt"
+#     "api.youtil.co.kr" = "projects/enhanced-pen-462505-m4/locations/global/certificates/youtil-crt"
+#   }
+# }
 
-# External Load Balancer
-module "external_lb" {
-  source = "../../modules/external_lb"
-  name   = "web"
-  default_backend_service_id = module.frontend_backend.backend_service_id
-  certificate_map_id = module.certificate_manager.certificate_map_id
+# # External Load Balancer
+# module "external_lb" {
+#   source = "../../modules/external_lb"
+#   name   = "web"
+#   default_backend_service_id = module.frontend_backend.backend_service_id
+#   certificate_map_id = module.certificate_manager.certificate_map_id
 
-  host_rules = [
-    {
-      host = "youtil.co.kr"
-      path_matcher = "main"
-      default_service_id = module.frontend_backend.backend_service_id
-      path_rules = []
-    },
-    {
-      host = "api.youtil.co.kr"
-      path_matcher = "api"
-      default_service_id = module.backend_service.backend_service_id
-      path_rules = []
-    }
-  ]
-}
+#   host_rules = [
+#     {
+#       host = "youtil.co.kr"
+#       path_matcher = "main"
+#       default_service_id = module.frontend_backend.backend_service_id
+#       path_rules = []
+#     },
+#     {
+#       host = "api.youtil.co.kr"
+#       path_matcher = "api"
+#       default_service_id = module.backend_service.backend_service_id
+#       path_rules = []
+#     }
+#   ]
+# }
