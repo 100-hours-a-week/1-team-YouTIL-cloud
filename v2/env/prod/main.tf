@@ -9,7 +9,7 @@ terraform {
 }
 
 provider "google" {
-  credentials = file("../../../credentials/youtil3-terraform-sa.json")
+  credentials = file("../../../credentials/youtil6-terraform-sa.json")
   project = var.project_id
   region  = var.region
 }
@@ -82,6 +82,7 @@ resource "google_compute_address" "db_internal" {
   purpose      = "GCE_ENDPOINT"
   subnetwork   = module.vpc.db_subnet_self_link
   region       = var.region
+  address      = "10.0.66.205"
 }
 
 module "master" {
