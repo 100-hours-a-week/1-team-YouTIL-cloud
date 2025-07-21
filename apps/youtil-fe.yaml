@@ -15,7 +15,7 @@ spec:
         - values.yaml
   destination:
     server: https://kubernetes.default.svc
-    namespace: prod
+    namespace: youtil-prod
   syncPolicy:
     automated:
       prune: true
